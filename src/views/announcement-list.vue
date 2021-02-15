@@ -1,43 +1,17 @@
 <template>
-  <div id="app">
-    <div class="nav">
-
-    </div>
-    <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group>
-    <div class="content">
-      <el-menu :default-active="listType" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-        <el-menu-item 
-          v-for="(menu,index) in menuMap" 
-          :index="menu.key"
-          :key="index">
-          <i :class="menu.icon"></i>
-          <span slot="title">{{menu.title}}</span>
-        </el-menu-item>
-      </el-menu>
-      <template>
-        <router-view name="AnnouncementList"/>
-      </template> 
-    </div>
-    <div class="footer">
-
-    </div>
+  <div class="announcement-list">
+    Hone
   </div>
 </template>
 <script>
 import placeMixin from '@/plugins/mixins/place-mixin'
   export default {
-    name: 'App',
+    name: 'AnnouncementList',
     mixins:[placeMixin],
     data() {
       return {
         isCollapse: false
       };
-    },
-    created () {
-      console.log(this.$route.path.split('/')[1])
     },
     computed: {
       menuMap () {
@@ -76,18 +50,9 @@ import placeMixin from '@/plugins/mixins/place-mixin'
     }
   }
 </script>
-<style style="scss">
-  .nav, .footer{
-    height: 50px;
-    background-color: #545c64;
-  }
-  .content{
-    display: flex;
-    min-height: 450px;
-  }
+<style>
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
   }
 </style>
-
