@@ -51,9 +51,15 @@ export default {
     },
     save(){
       this.saveLoading = true
-      this.close()
-      this.$emit('getAnnouncementData')
-      this.$message.success('发布公告成功')
+      this.$http.post("announcement", this.announcementForm).then(res=>{
+        if(res.status === 200){
+          this.close()
+          this.$emit('getAnnouncementData')
+          this.$message.success('发布公告成功')
+        }
+      }).catch(err=>{
+        this.$message.error(err.message)
+      })
     }
   }
 }

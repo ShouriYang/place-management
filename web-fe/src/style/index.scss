@@ -1,0 +1,14 @@
+.list-title{
+  .el-alert--success.is-light {
+    background-color: #ecf5ff;
+    color: #409EFF;
+  }
+  .el-alert__title {
+  font-size: 16px;
+  line-height: 24px;
+  }
+}
+.cell-with-icon{
+  display: flex;
+  align-items: center;
+}

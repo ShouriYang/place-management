@@ -4,21 +4,19 @@ const cors = require('cors');
 
 app.set('secret', 'dfasfdasdf');
 //指定域名为8080跨域
-// app.use(
-//   require('cors')({
-//     credentials: true,
-//     origin: 'http://localhost:8080'
-//   })
-// );
+app.use(
+  require('cors')({
+    credentials: true,
+    origin: 'http://localhost:8080'
+  })
+);
 // 让express识别客户端提交的json
 app.use(cors());
 app.use(express.json());
 
-require('./routes/post')(app)
+require('./routes/announcement')(app)
 require('./routes/user')(app)
-require('./routes/task')(app)
-require('./routes/message')(app)
-require('./routes/manage')(app)
+require('./routes/place')(app)
+require('./routes/apply')(app)
 
-
-app.listen(3000, () => console.log('http://localhost:3000/'));
+app.listen(3001, () => console.log('http://localhost:3001/'));

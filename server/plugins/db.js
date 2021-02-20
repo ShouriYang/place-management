@@ -1,6 +1,6 @@
 // 链接数据库
 const mongoose = require('mongoose')
-DB_URL = 'mongodb://localhost:27017/task-admin';
+DB_URL = 'mongodb://localhost:27017/place-manage';
 
 mongoose.connect(DB_URL, {
     useCreateIndex: true,
@@ -30,40 +30,3 @@ mongoose.connection.on('disconnected', function () {
 });    
 
 module.exports = mongoose;
-
-
-// //定义并且建立模型
-// const Task = mongoose.model("taskData", new mongoose.Schema({
-//     publishDate: {
-//         type: String
-//     },
-//     deadline: {
-//         type: String
-//     },
-//     title: {
-//         type: String
-//     },
-//     publishDate: {
-//         type: String
-//     },
-//     requirement:{
-//         type: String
-//     },
-//     requirementFile:{
-//         type: String
-//     },
-//     submitFile:{
-//         type: String
-//     },
-//     taskStatus: {
-//         type: Number
-//     },
-//     getter:{
-//         type: String
-//     },
-//     publisher:{
-//         type: String
-//     }
-// }))
-
-// module.exports = {Task};//导出一个对象，可以增加模型

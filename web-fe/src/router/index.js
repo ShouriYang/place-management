@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 const AnnouncementList = () => import('@/views/announcement-list.vue')
+const Login = () => import('@/views/login.vue')
 const PlaceList = () => import('@/views/place-list.vue')
 const ApplyList = () => import('@/views/apply-list.vue')
 const UserList = () => import('@/views/user-list.vue')
@@ -14,6 +15,13 @@ const routes = [
     name: 'app',
     redirect: '/announcementList',
     component: App
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    components: {
+      Login: Login
+    }
   },
   {
     path: '/announcementList',

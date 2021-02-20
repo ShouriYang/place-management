@@ -1,35 +1,51 @@
 <template>
   <div id="app">
-    <div class="nav">
-      <div class="nav-left">
-        <span class="nav-title">
-          <i class="el-icon-edit-outline"></i>
-          场地管理系统
-        </span>
-      </div>
+    <div v-if="!isLogin">
+      <router-view name="Login"/>
     </div>
-    <div class="content">
-      <el-menu :default-active="listType" router class="el-menu-vertical-demo" :collapse="isCollapse">
-        <el-menu-item 
-          v-for="(menu,index) in menuMap" 
-          :index="menu.key"
-          :key="index">
-          <i :class="menu.icon"></i>
-          <span slot="title">{{menu.title}}</span>
-        </el-menu-item>
-      </el-menu>
-      <div class="content-list">
-        <i :class="isCollapse?'el-icon-s-unfold':'el-icon-s-fold'" class="collapse-btn" @click="handleCollapse"></i>
-        <template>
-          <router-view name="AnnouncementList"/>
-          <router-view name="PlaceList"/>
-          <router-view name="UserList"/>
-          <router-view name="ApplyList"/>
-        </template> 
+    <div v-if="isLogin">
+      <div class="nav">
+        <div class="nav-left">
+          <span class="nav-title">
+            <i class="el-icon-edit-outline"></i>
+            场地管理系统
+          </span>
+        </div>
+        <div class="nav-right">
+          <el-dropdown @command="handleLogout">
+              <span class="user-info">
+                <img class="user-avatar" src="./assets/user-avatar.png" alt="">
+                <span>{{userName || ''}}</span>
+              </span> 
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="logOut">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
       </div>
-    </div>
-    <div class="footer">
+      <div class="content">
+        <el-menu :default-active="listType" router class="el-menu-vertical-demo" :collapse="isCollapse">
+          <el-menu-item 
+            v-for="(menu,index) in menuMap" 
+            :index="menu.key"
+            :key="index">
+            <i :class="menu.icon"></i>
+            <span slot="title">{{menu.title}}</span>
+          </el-menu-item>
+        </el-menu>
+        <div class="content-list">
+          <i :class="isCollapse?'el-icon-s-unfold':'el-icon-s-fold'" class="collapse-btn" @click="handleCollapse"></i>
+          <template>
+            <router-view name="AnnouncementList"/>
+            <router-view name="PlaceList"/>
+            <router-view name="UserList"/>
+            <router-view name="ApplyList"/>
+          </template> 
+        </div>
+      </div>
+      <div class="footer">
 
+      </div>
     </div>
   </div>
 </template>
@@ -43,14 +59,27 @@ import placeMixin from '@/plugins/mixins/place-mixin'
         isCollapse: false
       };
     },
-    created () {
+    mounted () {
+      if(!this.isLogin){
+        this.$router.push('/login')
+      }
     },
     computed: {
-
+      userName(){
+        return localStorage.userName
+      },
+      isLogin(){
+        return !(!localStorage.token)
+      }
     },
     methods: {
       handleCollapse(){
         this.isCollapse = !this.isCollapse
+      },
+      handleLogout(){
+        localStorage.clear()
+        this.$router.push('/login')
+        location.reload();
       }
     }
   }
@@ -62,11 +91,27 @@ import placeMixin from '@/plugins/mixins/place-mixin'
     display: flex;
     align-items: center;
   }
+  .nav{
+    justify-content: space-between;
+    color: #fff;
+    font-size: 16px;
+  }
   .nav-left{
     margin-left: 20px;
-    .nav-title{
+  }
+  .nav-right{
+    margin-right: 50px;
+    .user-info{
+      cursor: pointer;
       color: #fff;
       font-size: 16px;
+      display: flex;
+      align-items: center;
+      .user-avatar{
+        margin-right: 8px;
+        width: 30px !important;
+        height: 30px !important;
+      }
     }
   }
   .content{

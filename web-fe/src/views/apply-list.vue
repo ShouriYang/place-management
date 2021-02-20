@@ -1,8 +1,14 @@
 <template>
   <div class="apply-list">
     <div class="list-title">
-      <el-tag style="fontSize:16px">申请管理</el-tag>
+      <el-alert
+        title="申请管理"
+        center
+        type="success"
+        :closable="false">
+      </el-alert>
     </div>
+    <el-divider></el-divider>
   </div>
 </template>
 <script>
@@ -20,9 +26,5 @@ import placeMixin from '@/plugins/mixins/place-mixin'
     }
   }
 </script>
-<style>
-  .list-title{
-    font-size: 20px !important;
-    text-align: center;
-  }
+<style lang='scss' scpoed>
 </style>
