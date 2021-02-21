@@ -26,6 +26,20 @@ export default {
         '1': 'el-icon-error'
       }
     },
+    applyStatusMap () {
+      return {
+        '0': '正在审核',
+        '1': '审核通过',
+        '2': '审核未通过'
+      }
+    },
+    applyStatusIcon () {
+      return {
+        '0': 'el-icon-question',
+        '1': 'el-icon-success',
+        '2': 'el-icon-error'
+      }
+    },
     menuMap () {
       const allMaps = [
         {

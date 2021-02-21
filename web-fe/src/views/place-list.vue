@@ -184,10 +184,6 @@ import ApplyPlaceDialog from '@/components/place/apply-place-dialog.vue'
   .place-card{
     margin-bottom: 8px;
   }
-  .place-name, .place-capacity{
-    height: 16px;
-    width: 16px;
-  }
   .el-icon-success{
     color: #67C23A;
   }

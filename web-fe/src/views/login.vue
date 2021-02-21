@@ -89,7 +89,9 @@ export default {
           }
           this.$message.success('登录成功')
           this.$router.push('/announcementList')
-          location.reload();
+          // setTimeout(()=>{
+            location.reload()
+          // },1000)
         }else{
           this.$message.error(res.data.message)
         }

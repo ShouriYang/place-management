@@ -53,10 +53,13 @@ module.exports = app => {
    const apply =  await Apply.findByIdAndUpdate(req.params.id,{
     status: '1'
    })
+   await Place.findByIdAndUpdate(apply.applyPlaceId,{
+     status: '1'
+   })
    res.send(apply)
   })
   //不通过申请
-  router.put('/failed/:id', async(req, res) => {
+  router.put('/refuse/:id', async(req, res) => {
     const apply =  await Apply.findByIdAndUpdate(req.params.id,{
       status: '2'
      })
