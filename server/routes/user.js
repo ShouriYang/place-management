@@ -12,7 +12,7 @@ module.exports = app => {
 
   //注册申请
   router.post('/register', async (req, res) => {
-    const user = await User.findByIdAndUpdate({
+    const user = await User.create({
       college: req.body.college,
       contact:req.body.contact,
       userName:req.body.userName,
@@ -40,7 +40,6 @@ module.exports = app => {
     const user = await User.findOne({
       userName:req.body.userName
     })
-    console.log(user)
     if(!user){
       res.status(201).send({
         message: '该用户不存在'
